@@ -1,86 +1,90 @@
-//
+// a calculator to perform addition, subtraction, multiplication and divisions for two number, and calculate n! for given a number n.
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h> // printf, scanf definition
 #include <stdlib.h> // system pause definition
 
-int run();
+int run(void); // ask choice for what to execute
 int fact(int n);
 double add(double a, double b);
 double sub(double a, double b);
 double mul(double a, double b);
 double div(double a, double b);
-int n;
+int n, fac = 1;
 double a, b;
 
 int main(void) {
-    
-    run();
-    
-    
-    system("pause");
-    return 0;
+	run();
+
+	system("pause");
+	return 0;
 }
 
-int run() {
-    char choice;
-    
-    printf("1: Addition \n2: Subtraction \n3: Mutiplication \n4: Division \n5: Factorial \n6: Quit \nEnter the choice => ");
-    scanf("%c", &choice);
-    switch (choice) {
-    case '1':
-        printf("Enter two numbers => ");
-        scanf("%lf, %lf", a, b);
-        printf("Sum => %lf", add(a, b));
-        break;
-    case '2':
-        printf("Enter two numbers => ");
-        scanf("%lf, %lf", a, b);
-        printf("Difference => %lf", sub(a, b));
-        break;
-    case '3':
-        printf("Enter two numbers => ");
-        scanf("%lf, %lf", a, b);
-        printf("Product => %lf", mul(a, b));
-        break;
-    case '4':
-        printf("Enter two numbers => ");
-        scanf("%lf, %lf", a, b);
-        printf("Quotient => %lf", div(a, b));
-        break;
-    case '5':
-        printf("Enter a number => ");
-        scanf("%d", n);
-        printf("Result => %lf", fact(n));
-        break;
-    case '6':
-        return 0;
-    default:
-        printf("Invaild choice!");
-    }
-    run();
+int run(void) {
+	char choice;
+	n = 1;
+	printf("1: Addition \n2: Subtraction \n3: Mutiplication \n4: Division \n5: Factorial \n6: Quit \nEnter the choice => ");
+	scanf("\r");
+	scanf("%c", &choice);
+	switch (choice) {
+	case '1':
+		printf("Enter two numbers => ");
+		scanf("%lf, %lf", &a, &b);
+		printf("Sum => %.2lf", add(a, b));
+		break;
+	case '2':
+		printf("Enter two numbers => ");
+		scanf("%lf, %lf", &a, &b);
+		printf("Difference => %.2lf", sub(a, b));
+		break;
+	case '3':
+		printf("Enter two numbers => ");
+		scanf("%lf, %lf", &a, &b);
+		printf("Product => %.2lf", mul(a, b));
+		break;
+	case '4':
+		printf("Enter two numbers => ");
+		scanf("%lf, %lf", &a, &b);
+		printf("Quotient => %.2lf", div(a, b));
+		break;
+	case '5':
+		printf("Enter a number => ");
+		scanf("%d", &n);
+		if (fact(n) == -1) printf("Invaild Number.");
+		else printf("Result => %d", fact(n));
+
+		break;
+	case '6':
+		return 0;
+	default:
+		printf("Invaild choice!");
+	}
+	printf("\n");
+	fac = 1;
+	a = b = 0;
+	run();
 }
 
-int fact(int n){
-    int fac = 1;
-    if (n < 0) return -1;
-    else if (n == 0) return 1;
-    else if (n == 1) return fac;
-    else {
-        fac *= n--;
-        fact(n)
-    }
-    
+int fact(int n) {
+	if (n < 0) return -1;
+	else if (n == 0) return 1;
+	else if (n == 1) return fac;
+	else {
+		fac *= n;
+		n--;
+		fact(n);
+	}
+
 }
 
-double add(double a, double b){
-    return (a + b);
+double add(double a, double b) {
+	return (a + b);
 }
-double sub(double a, double b){
-    return (a - b);
+double sub(double a, double b) {
+	return (a - b);
 }
-double mul(double a, double b){
-    return (a * b);
+double mul(double a, double b) {
+	return (a * b);
 }
-double div(double a, double b){
-    return (a / b);
+double div(double a, double b) {
+	return (a / b);
 }
