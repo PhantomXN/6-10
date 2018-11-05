@@ -1,16 +1,17 @@
-// a calculator to perform addition, subtraction, multiplication and divisions for two number, and calculate n! for given a number n.
+// a calculator to perform addition, subtraction, multiplication and division for two number, and calculate n! for given a number n.
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h> // printf, scanf definition
 #include <stdlib.h> // system pause definition
 
 int run(void); // ask choice for what to execute
-int fact(int n);
-double add(double a, double b);
-double sub(double a, double b);
-double mul(double a, double b);
-double div(double a, double b);
-int n, fac = 1;
-double a, b;
+int fact(int n); // factorial of a number
+double add(double a, double b); // addition
+double sub(double a, double b); // subtraction
+double mul(double a, double b); // multiplication
+double div(double a, double b); // division
+int n, // the number to be factorial
+fac = 1; // the factorial result
+double a, b; // two numbers to be calculate
 
 int main(void) {
 	run();
@@ -20,7 +21,7 @@ int main(void) {
 }
 
 int run(void) {
-	char choice;
+	char choice; // user's choices for the action
 	n = 1;
 	printf("1: Addition \n2: Subtraction \n3: Mutiplication \n4: Division \n5: Factorial \n6: Quit \nEnter the choice => ");
 	scanf("\r");
@@ -54,13 +55,13 @@ int run(void) {
 
 		break;
 	case '6':
-		return 0;
+		return 0; // stop the program
 	default:
 		printf("Invaild choice!");
 	}
 	printf("\n");
-	fac = 1;
-	a = b = 0;
+	fac = 1; // reset factorial result
+	a = b = 0; // reset the two numbers
 	run();
 }
 
@@ -71,9 +72,8 @@ int fact(int n) {
 	else {
 		fac *= n;
 		n--;
-		fact(n);
+		fact(n); // use recursion to caculate factorial
 	}
-
 }
 
 double add(double a, double b) {
